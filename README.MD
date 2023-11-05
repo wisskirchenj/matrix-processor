@@ -16,7 +16,7 @@ The sources of main project tasks (6 stages) and pytest testing.
 
 Install the wheel file using pip after clone/fork:
 
-    > pip install dist/matrix-processor-3.11.6-py3-none-any.whl
+    > pip install dist/matrix_processor-3.11.6-py3-none-any.whl
 
 ## Program description
 
