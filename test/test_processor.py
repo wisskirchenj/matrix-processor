@@ -2,7 +2,7 @@ import unittest
 from io import StringIO
 from unittest.mock import patch, MagicMock
 
-from matrix.processor import main, add, scale, mult, trans
+from matrix.processor import main, add, scale, mult, trans, det, inverse
 
 
 class TestProcessor(unittest.TestCase):
@@ -111,3 +111,32 @@ class TestProcessor(unittest.TestCase):
         mock_input.side_effect = ['2', '3 2', '1 2', '3 4', '5 6']
         trans()
         self.assertNotEqual(-1, mock_stdout.getvalue().find('6 4 2\n5 3 1\n'))
+
+    @patch('builtins.input')
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_det(self, mock_stdout: StringIO, mock_input: MagicMock):
+        mock_input.side_effect = ['2 2', '1 2', '6 7']
+        det()
+        self.assertNotEqual(-1, mock_stdout.getvalue().find('-5\n'))
+
+    @patch('builtins.input')
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_det_non_square(self, mock_stdout: StringIO, mock_input: MagicMock):
+        mock_input.side_effect = ['2 3', '1 2 3', '6 7 8']
+        det()
+        self.assertNotEqual(-1, mock_stdout.getvalue().find('ERROR\n'))
+
+    @patch('builtins.input')
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_inverse(self, mock_stdout: StringIO, mock_input: MagicMock):
+        mock_input.side_effect = ['3 3', '2 -1 0', '0 1 2', '1 1 0']
+        inverse()
+        self.assertNotEqual(-1, mock_stdout.getvalue().find(
+            '0.3333333333 0 0.3333333333\n-0.3333333333 0 0.6666666667\n0.1666666667 0.5 -0.3333333333\n'))
+
+    @patch('builtins.input')
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_inverse_non_square(self, mock_stdout: StringIO, mock_input: MagicMock):
+        mock_input.side_effect = ['2 3', '1 2 3', '6 7 8']
+        inverse()
+        self.assertNotEqual(-1, mock_stdout.getvalue().find('ERROR\n'))

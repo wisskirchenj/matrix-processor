@@ -8,6 +8,8 @@ MENU = '''1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate a determinant
+6. Inverse matrix
 0. Exit'''
 
 TRANSPOSE_MENU = '''1. Main diagonal
@@ -66,8 +68,27 @@ def scale():
     return LOOP
 
 
+def det():
+    matrix = read_matrix("")
+    if matrix.shape[1] != matrix.shape[0]:
+        print('ERROR')
+    else:
+        print('{0:.10g}'.format(np.linalg.det(matrix)))
+    return LOOP
+
+
+def inverse():
+    matrix = read_matrix("")
+    if matrix.shape[1] != matrix.shape[0]:
+        print('ERROR')
+    else:
+        print_matrix(np.linalg.inv(matrix))
+    return LOOP
+
+
 def main():
-    Menu(MENU, {'1': add, '2': scale, '3': mult, '4': trans, '0': lambda: EXIT}).loop()
+    Menu(MENU, {'1': add, '2': scale, '3': mult, '4': trans, '5': det, '6': inverse,
+         '0': lambda: EXIT}).loop()
 
 
 if __name__ == '__main__':

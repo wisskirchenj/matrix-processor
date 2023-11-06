@@ -27,7 +27,7 @@ Have fun!
 
 ## Project progress
 
-[//]: # (Project was completed on 29.10.23)
+Project was completed on 29.10.23
 
 02.11.23 Project started and Stage 1 completed - Addition of 2 matrices, read from input.
 
@@ -36,3 +36,7 @@ Have fun!
 04.11.23 Stage 3 completed - add multiplication of 2 matrices. Provide menu for choosing operation.
 
 05.11.23 Stage 4 completed - add transposition of matrix in 4 different ways, both diagonals and axes.
+
+06.11.23 Stage 5 completed - add determinant calculation for square matrices using numpy.
+
+06.11.23 Final Stage 6 completed - add inverse calculation for square matrices using numpy.
